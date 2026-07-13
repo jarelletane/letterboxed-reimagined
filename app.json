@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Letterboxed Reimagined",
+    "slug": "letterboxed-reimagined",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/letterboxed-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0b0d10"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jarelletane.letterboxedreimagined"
+    },
+    "android": {
+      "package": "com.jarelletane.letterboxedreimagined"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
