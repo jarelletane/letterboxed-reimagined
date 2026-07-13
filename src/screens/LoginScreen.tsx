@@ -21,7 +21,11 @@ const moodDots = [
   { label: "New", color: colors.blue }
 ];
 
-export function LoginScreen() {
+type LoginScreenProps = {
+  onContinue: () => void;
+};
+
+export function LoginScreen({ onContinue }: LoginScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" />
@@ -29,9 +33,11 @@ export function LoginScreen() {
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.screen}
       >
-        <View style={styles.backgroundGlow}>
-          <View style={styles.orangeGlow} />
-          <View style={styles.blueGlow} />
+        <View style={styles.backgroundTexture}>
+          <View style={[styles.projectorBeam, styles.projectorBeamOrange]} />
+          <View style={[styles.projectorBeam, styles.projectorBeamGreen]} />
+          <View style={[styles.projectorBeam, styles.projectorBeamBlue]} />
+          <View style={styles.filmStrip} />
         </View>
 
         <ScrollView
@@ -47,31 +53,18 @@ export function LoginScreen() {
           </View>
 
           <View style={styles.hero}>
-            <Text style={styles.eyebrow}>A softer film diary</Text>
-            <Text style={styles.title}>Remember what a film felt like.</Text>
+            <Text style={styles.eyebrow}>Film tracking, redesigned</Text>
+            <Text style={styles.title}>A cleaner way to log every film.</Text>
             <Text style={styles.subtitle}>
-              Log watches, keep notes and build a watchlist around mood, memory and the people you
-              trust.
+              Rate films, keep a diary, build watchlists and revisit your history in a calmer
+              mobile experience.
             </Text>
-          </View>
-
-          <View style={styles.posterShelf}>
-            <View style={[styles.poster, styles.posterLarge]}>
-              <Text style={styles.posterYear}>Tonight</Text>
-              <Text style={styles.posterTitle}>Quiet drama</Text>
-            </View>
-            <View style={[styles.poster, styles.posterSmall, styles.posterOrange]}>
-              <Text style={styles.posterYear}>4.5</Text>
-            </View>
-            <View style={[styles.poster, styles.posterSmall, styles.posterBlue]}>
-              <Text style={styles.posterYear}>List</Text>
-            </View>
           </View>
 
           <View style={styles.card}>
             <View>
               <Text style={styles.cardTitle}>Sign in</Text>
-              <Text style={styles.cardCopy}>Pick up your diary, lists and unfinished thoughts.</Text>
+              <Text style={styles.cardCopy}>Continue to your diary, lists and watch history.</Text>
             </View>
 
             <View style={styles.fieldGroup}>
@@ -95,7 +88,7 @@ export function LoginScreen() {
               />
             </View>
 
-            <Pressable style={styles.primaryButton}>
+            <Pressable style={styles.primaryButton} onPress={onContinue}>
               <Text style={styles.primaryButtonText}>Continue</Text>
             </Pressable>
 
@@ -122,29 +115,40 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1
   },
-  backgroundGlow: {
+  backgroundTexture: {
     ...StyleSheet.absoluteFill,
     overflow: "hidden"
   },
-  orangeGlow: {
+  projectorBeam: {
     position: "absolute",
-    top: -90,
-    right: -80,
-    width: 260,
-    height: 260,
-    borderRadius: 130,
-    backgroundColor: colors.orange,
-    opacity: 0.16
+    top: -60,
+    width: 54,
+    height: 420,
+    borderRadius: 28,
+    opacity: 0.12,
+    transform: [{ rotate: "16deg" }]
   },
-  blueGlow: {
-    position: "absolute",
-    left: -120,
-    bottom: 80,
-    width: 300,
-    height: 300,
-    borderRadius: 150,
-    backgroundColor: colors.blue,
+  projectorBeamOrange: {
+    right: 20,
+    backgroundColor: colors.orange
+  },
+  projectorBeamGreen: {
+    right: 86,
+    backgroundColor: colors.green,
     opacity: 0.1
+  },
+  projectorBeamBlue: {
+    right: 152,
+    backgroundColor: colors.blue,
+    opacity: 0.08
+  },
+  filmStrip: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 122,
+    height: 1,
+    backgroundColor: "rgba(255, 255, 255, 0.08)"
   },
   content: {
     flexGrow: 1,
@@ -200,49 +204,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sansRegular,
     fontSize: 16,
     lineHeight: 24
-  },
-  posterShelf: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    gap: spacing.sm,
-    minHeight: 170
-  },
-  poster: {
-    justifyContent: "flex-end",
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: colors.line,
-    borderRadius: radii.lg,
-    padding: spacing.md,
-    backgroundColor: colors.card
-  },
-  posterLarge: {
-    flex: 1,
-    height: 170,
-    backgroundColor: "#20282f"
-  },
-  posterSmall: {
-    width: 78,
-    height: 128
-  },
-  posterOrange: {
-    backgroundColor: "rgba(255, 138, 43, 0.22)"
-  },
-  posterBlue: {
-    backgroundColor: "rgba(24, 185, 242, 0.2)"
-  },
-  posterYear: {
-    color: colors.muted,
-    fontFamily: fonts.sansExtraBold,
-    fontSize: 12,
-    textTransform: "uppercase"
-  },
-  posterTitle: {
-    marginTop: spacing.xs,
-    color: colors.ink,
-    fontFamily: fonts.sansExtraBold,
-    fontSize: 25,
-    lineHeight: 29
   },
   card: {
     gap: spacing.md,

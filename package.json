@@ -4,14 +4,15 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "ios": "expo start --ios",
-    "android": "expo start --android",
+    "start": "expo start --go",
+    "ios": "expo start --go --ios --port 8087",
+    "android": "expo start --go --android",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
+    "@expo/vector-icons": "^15.1.1",
     "expo": "~57.0.0",
     "expo-font": "^57.0.0",
     "react": "19.2.3",

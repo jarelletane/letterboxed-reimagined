@@ -6,9 +6,12 @@ import {
   Inter_800ExtraBold,
   useFonts
 } from "@expo-google-fonts/inter";
+import { useState } from "react";
+import { DashboardScreen } from "./src/screens/DashboardScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -21,5 +24,9 @@ export default function App() {
     return null;
   }
 
-  return <LoginScreen />;
+  if (isLoggedIn) {
+    return <DashboardScreen onLogout={() => setIsLoggedIn(false)} />;
+  }
+
+  return <LoginScreen onContinue={() => setIsLoggedIn(true)} />;
 }

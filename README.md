@@ -1,8 +1,8 @@
 # Letterboxed Reimagined
 
-React Native prototype exploring a warmer, more personal redesign direction for a film diary and discovery app.
+React Native prototype for a Letterboxd-style film logging app with a redesigned mobile experience.
 
-The goal is not to recreate Letterboxd screen-for-screen. This is a product/design exercise imagining a mobile-first experience that feels more cinematic, calm and intentional: quick logging, personal taste signals, watch mood and a softer entry point into a user's film life.
+The core product behaviour is familiar: users can log films, rate what they watch, keep a diary, build watchlists and organise their film history. The difference is the design direction. This prototype explores how the same kind of film-tracking product could feel cleaner, calmer and more intentional on mobile, with faster everyday actions and a more polished visual system.
 
 ## Tech Stack
 
@@ -17,14 +17,14 @@ The goal is not to recreate Letterboxd screen-for-screen. This is a product/desi
 
 ```bash
 npm install
-npm run start
+npm run ios
 ```
 
-Then open the app in Expo Go, iOS Simulator, Android Emulator, or web.
+This project is currently intended to run through Expo Go. If Expo opens a native development build and shows `No script URL provided`, stop that process and run `npm run ios` from this project instead.
 
 ## Current Scope
 
 - Expo + React Native + TypeScript scaffold
 - Branded login screen using the provided Letterboxed logo
+- Personalised dashboard prototype with For You recommendations, watch goals, cinema picks and streaming suggestions
 - Native styling foundation for the redesign direction
-
